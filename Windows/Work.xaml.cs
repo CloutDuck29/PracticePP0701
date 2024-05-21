@@ -16,40 +16,43 @@ using System.Windows.Shapes;
 
 namespace Practice
 {
-    /// <summary>
-    /// Логика взаимодействия для Work.xaml
-    /// </summary>
     public partial class Work : Window
     {
-        User CurrentUser; // вся информация о текущем пользователе
-        Rules rules;
+        User CurrentUser; // текущий пользователь
+        Rules CurrentRules; // права текущего пользователя
+
+
         public Work(User currentUser)
         {
             CurrentUser = currentUser;
-            rules = new Rules(CurrentUser.Role);
+            CurrentRules = new Rules(CurrentUser.Role);
             InitializeComponent();
-            if (rules != null) {
-                if (rules.GradesTableSee)
+            // связь между правами пользователя и отображаемыми элементами интерфейса при инициализации приложения
+            if (CurrentRules != null) 
+            {
+                if (CurrentRules.GradesTableSee)
                 {
                     (GradesTableButton.Parent as Border).Visibility = Visibility.Visible;
                 }
-                if(rules.StudentsTableSee) {
+                if(CurrentRules.StudentsTableSee) {
                     (StudentsTableButton.Parent as Border).Visibility = Visibility.Visible;
                 }
             }
-            
         }
 
+        // отображение выбранной таблицы и замена названия текущей таблицы в метке
+        private void ShowTable(string pageUrl, string nameOfPage)
+        {
+            CurrentData.NavigationService.Navigate(new Uri(pageUrl, UriKind.Relative));
+            NameOfCurrentTable.Text = nameOfPage;
+        }
         private void StudentsTableButton_Click(object sender, RoutedEventArgs e)
         {
-            CurrentData.NavigationService.Navigate(new Uri("Pages/StudentsData.xaml", UriKind.Relative));
-            NameOfCurrentTable.Text = "Студенты";
+            ShowTable("Pages/StudentsData.xaml", "Студенты");
         }
-
         private void GradesTableButton_Click(object sender, RoutedEventArgs e)
         {
-            CurrentData.NavigationService.Navigate(new Uri("Pages/GradesData.xaml", UriKind.Relative));
-            NameOfCurrentTable.Text = "Оценки";
+            ShowTable("Pages/GradesData.xaml", "Оценки");
         }
     }
 }

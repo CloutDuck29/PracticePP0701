@@ -33,10 +33,10 @@ namespace Practice
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            // (1) ПОЛУЧАЕМ СПИСОК ВСЕХ ПОЛЬЗОВАТЕЛЕЙ
+            // (1) ПОЛУЧАЕМ СПИСОК ВСЕХ ПОЛЬЗОВАТЕЛЕЙ ИЗ БД
             List<User> listUsers = new List<User>();
 
-            // список всех пользователей БД College с их ролями
+            // процедура - список всех пользователей БД College с их ролями
             string cmdText = "EXEC sp_helpuser";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -50,6 +50,7 @@ namespace Practice
 
                     while (myreader.Read())
                     {
+                        //DefSchemaName - выбор тех пользователей, к-ые находятся в БД сollege
                         if (myreader["DefSchemaName"].ToString() == nameOfSchema)
                         {
                             listUsers.Add(new User(myreader["LoginName"].ToString(), myreader["RoleName"].ToString()));
@@ -59,7 +60,6 @@ namespace Practice
                         //myreader.GetString(0);
                     }
                     myreader.Close();
-
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("УСПЕШНО ПОЛУЧЕН СПИСОК ПОЛЬЗОВАТЕЛЕЙ", "УСПЕХ");
                 }
@@ -72,11 +72,11 @@ namespace Practice
 
             // (2) ПРОВЕРЯЕМ НАЛИЧИЕ ПОЛЬЗОВАТЕЛЯ В БД
             bool logic = false;
-            User CurrentUser = new User("", "", ""); // вся информация о текущем пользователе
+            User CurrentUser = new User("", ""); // вся информация о текущем пользователе
 
             foreach (User user in listUsers)
             {
-                if (user.Login == CurrentLoginTextBox.Text) // из переменной user надо вычленить логин
+                if (user.Login == CurrentLoginTextBox.Text)
                 {
                     CurrentUser = user;
                     logic = true;
@@ -85,11 +85,11 @@ namespace Practice
             }
 
 
-
+            // если введенный логин найден
             if (logic)
             {
-                CurrentUser.Password = new CollegeEntities().Users.First(l => l.Login == CurrentUser.Login).Password;
-                
+                // если введенный пароль к введённому логину найден
+                CurrentUser.Password = new CollegeEntities().Users.First(l => l.Login == CurrentUser.Login).Password;   
                 if (CurrentUser.Password == CurrentPasswordTextBox.Text)
                 {
                     new Work(CurrentUser).Show();

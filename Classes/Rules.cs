@@ -12,10 +12,9 @@ using System.Windows.Controls.Primitives;
 namespace Practice
 {
     // СПИСОК ТИПА РОЛЬ-РАЗРЕШЕНИЕ
-    // РАЗРЕШЕНИЯ ОПРЕДЕЛЯЮТ ТО, КАИКЕ КНОПКИ ВИДИТ ПОЛЬЗОВАТЕЛЬ => КАКИЕ ДЕЙСТВИЯ ОН МОЖЕТ СОВЕРШАТЬ
+    // РАЗРЕШЕНИЯ ОПРЕДЕЛЯЮТ ТО, КАКИЕ КНОПКИ ВИДИТ ПОЛЬЗОВАТЕЛЬ => КАКИЕ ДЕЙСТВИЯ ОН МОЖЕТ СОВЕРШАТЬ
     public class Rules
     {
-        string role;
         
         // (1) таблицы только для просмотра
         public bool AVGStudentScoresTableSee = false;
@@ -48,10 +47,8 @@ namespace Practice
             SpecialitiesTableSee = true;
         }
 
-
+        // Определение прав пользователей, в зависимости от роли
         public Rules(string role) {
-            this.role = role;
-            
             if(role == "Teacher")
             {
                 ISEEALL();
