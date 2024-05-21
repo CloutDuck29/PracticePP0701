@@ -21,12 +21,12 @@ namespace Practice
         User CurrentUser; // текущий пользователь
         Rules CurrentRules; // права текущего пользователя
 
-
         public Work(User currentUser)
         {
             CurrentUser = currentUser;
             CurrentRules = new Rules(CurrentUser.Role);
             InitializeComponent();
+            TypeOfAccount.Text = currentUser.Role;
             // связь между правами пользователя и отображаемыми элементами интерфейса при инициализации приложения
             if (CurrentRules != null) 
             {
@@ -41,18 +41,18 @@ namespace Practice
         }
 
         // отображение выбранной таблицы и замена названия текущей таблицы в метке
-        private void ShowTable(string pageUrl, string nameOfPage)
+        private void ShowTable(object page, string nameOfPage)
         {
-            CurrentData.NavigationService.Navigate(new Uri(pageUrl, UriKind.Relative));
+            CurrentData.Navigate(page);
             NameOfCurrentTable.Text = nameOfPage;
         }
         private void StudentsTableButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowTable("Pages/StudentsData.xaml", "Студенты");
+            ShowTable(new StudentsData(), "Студенты");
         }
         private void GradesTableButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowTable("Pages/GradesData.xaml", "Оценки");
+            ShowTable(new GradesData(), "Оценки");
         }
     }
 }

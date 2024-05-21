@@ -47,8 +47,8 @@
             </TextBlock>
             <Rectangle Grid.Row="1" Grid.ColumnSpan="3" Stroke="Black" VerticalAlignment="Bottom" Opacity="0.2" Height="0.5" Width="780"></Rectangle>
         </Grid>
-        <Border Grid.Row="1" CornerRadius="0 0 10 10" BorderBrush="Gray" BorderThickness="2">
-            <Frame NavigationUIVisibility="Hidden" x:Name="CurrentData">
+        <Border Grid.Row="1" Panel.ZIndex="1" CornerRadius="6" BorderBrush="Gray" BorderThickness="2">
+            <Frame Panel.ZIndex="-1" NavigationUIVisibility="Hidden" x:Name="CurrentData">
 
             </Frame>
         </Border>

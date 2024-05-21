@@ -8,14 +8,24 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GradesData">
 
-
-    <DataGrid x:Name="GradesDataGrid">
-        <DataGrid.Columns>
-            <DataGridTextColumn Binding="{Binding Category1.category_name}" Header="ID"></DataGridTextColumn>
-            <DataGridTextColumn Width="2*" Binding="{Binding count}" Header="РУП"></DataGridTextColumn>
-            <DataGridTextColumn Width="2*" Binding="{Binding price}" Header="Студент"></DataGridTextColumn>
-            <DataGridTextColumn Binding="{Binding price}" Header="Значение"></DataGridTextColumn>
-            <DataGridTextColumn Width="2*" Binding="{Binding price}" Header="Дата"></DataGridTextColumn>
-        </DataGrid.Columns>
-    </DataGrid>
+    <WrapPanel Orientation="Vertical">
+        <WrapPanel Margin="0 0 0 10" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
+            <Label>Оценка</Label>
+            <ComboBox Width="150">
+                <ComboBoxItem>2</ComboBoxItem>
+                <ComboBoxItem>3</ComboBoxItem>
+                <ComboBoxItem>4</ComboBoxItem>
+                <ComboBoxItem>5</ComboBoxItem>
+            </ComboBox>
+        </WrapPanel>
+        <DataGrid x:Name="GradesDataGrid">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Category1.category_name}" Header="ID"></DataGridTextColumn>
+                <DataGridTextColumn Width="2*" Binding="{Binding count}" Header="РУП"></DataGridTextColumn>
+                <DataGridTextColumn Width="2*" Binding="{Binding price}" Header="Студент"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding price}" Header="Значение"></DataGridTextColumn>
+                <DataGridTextColumn Width="2*" Binding="{Binding price}" Header="Дата"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </WrapPanel>
 </Page>

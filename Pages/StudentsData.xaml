@@ -11,9 +11,9 @@
 
     <DataGrid x:Name="StudentsDataGrid">
         <DataGrid.Columns>
-            <DataGridTextColumn Binding="{Binding Category1.category_name}" Header="ID"></DataGridTextColumn>
-            <DataGridTextColumn Width="4*" Binding="{Binding count}" Header="ФИО"></DataGridTextColumn>
-            <DataGridTextColumn Width="4*" Binding="{Binding price}" Header="Группа"></DataGridTextColumn>
+            <DataGridTextColumn Binding="{Binding id}" Header="ID"></DataGridTextColumn>
+            <DataGridTextColumn Width="4*" Binding="{Binding FIO}" Header="ФИО"></DataGridTextColumn>
+            <DataGridTextColumn Width="4*" Binding="{Binding Groups.Name}" Header="Группа"></DataGridTextColumn>
         </DataGrid.Columns>
     </DataGrid>
 </Page>
