@@ -31,12 +31,12 @@
             <!-- здесь отображаются только те таблицы, к которым есть доступ у пользователя () -->
             <!-- ДЛЯ ПОСЛЕДНЕГО ОТОБРАЖАЕМОГО BUTTON ВСТАВИТЬ СВОЙСТВО MARGIN="0" -->
             <WrapPanel Grid.Column="1" HorizontalAlignment="Center">
-                <Border Margin="0 0 10 0" Background="White" CornerRadius="5">
+                <Border Visibility="Collapsed" Margin="0 0 10 0" Background="White" CornerRadius="5">
                     <Button x:Name="StudentsTableButton" FontWeight="DemiBold" FontSize="14" Padding="10 8" BorderThickness="0" Background="Transparent" Click="StudentsTableButton_Click">
                         Студенты
                     </Button>
                 </Border>
-                <Border Margin="0 0 0 0" Background="White" CornerRadius="5">
+                <Border Visibility="Collapsed" Margin="0 0 0 0" Background="White" CornerRadius="5">
                     <Button x:Name="GradesTableButton" FontWeight="DemiBold" FontSize="14" Padding="10 8" BorderThickness="0" Background="Transparent" Click="GradesTableButton_Click">
                         Оценки
                     </Button>

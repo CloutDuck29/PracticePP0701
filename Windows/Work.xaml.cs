@@ -22,10 +22,22 @@ namespace Practice
     public partial class Work : Window
     {
         User CurrentUser; // вся информация о текущем пользователе
+        Rules rules;
         public Work(User currentUser)
         {
             CurrentUser = currentUser;
+            rules = new Rules(CurrentUser.Role);
             InitializeComponent();
+            if (rules != null) {
+                if (rules.GradesTableSee)
+                {
+                    (GradesTableButton.Parent as Border).Visibility = Visibility.Visible;
+                }
+                if(rules.StudentsTableSee) {
+                    (StudentsTableButton.Parent as Border).Visibility = Visibility.Visible;
+                }
+            }
+            
         }
 
         private void StudentsTableButton_Click(object sender, RoutedEventArgs e)

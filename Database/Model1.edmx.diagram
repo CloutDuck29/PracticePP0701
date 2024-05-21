@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="48a50ad5c7bc4535883da6d3af77f73c" Name="Diagram1">
+        <EntityTypeShape EntityType="CollegeModel.AVGStudentScores" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeModel.Disciplines" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeModel.Grades" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeModel.Groups" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeModel.LeaveStudents" Width="1.5" PointX="7.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeModel.RUP" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeModel.Specialities" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeModel.Students" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeModel.Teachers" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeModel.Users" Width="1.5" PointX="7.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeModel.DvoechinikiVRazrezeGrupIDisciplin" Width="1.5" PointX="9.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeModel.SpisokStudentovVRazrezeGroup" Width="1.5" PointX="9.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeModel.UchebnayaNagruzka" Width="1.5" PointX="9.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CollegeModel.VedomostOcenokStudentovVRazrezeGrupIDisciplin" Width="1.5" PointX="9.75" PointY="11.125" IsExpanded="true" />
+        <AssociationConnector Association="CollegeModel.FK_AVGStudentScores_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeModel.FK_RUP_Disciplines" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeModel.FK_Grades_RUP" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeModel.FK_Grades_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeModel.FK_Groups_Specialities" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeModel.FK_Students_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="CollegeModel.FK_RUP_Teachers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

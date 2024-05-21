@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Practice.Database;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -22,7 +23,7 @@ namespace Practice
     /// </summary>
     public partial class Authorization : Window
     {
-        string nameOfDatabase = "College";
+        string nameOfSchema = "dbo";
         // Model1 - имя подключения
         string connectionString = ConfigurationManager.ConnectionStrings["Model1"].ConnectionString;
         public Authorization()
@@ -49,10 +50,10 @@ namespace Practice
 
                     while (myreader.Read())
                     {
-                        if (myreader["DefDBName"].ToString() == nameOfDatabase)
+                        if (myreader["DefSchemaName"].ToString() == nameOfSchema)
                         {
                             listUsers.Add(new User(myreader["LoginName"].ToString(), myreader["RoleName"].ToString()));
-                            MessageBox.Show(listUsers.Last().Login + " " + listUsers.Last().Role);
+                            //MessageBox.Show(listUsers.Last().Login + " " + listUsers.Last().Role);
                         }
                         //myreader["UserName"].ToString();
                         //myreader.GetString(0);
@@ -71,8 +72,7 @@ namespace Practice
 
             // (2) ПРОВЕРЯЕМ НАЛИЧИЕ ПОЛЬЗОВАТЕЛЯ В БД
             bool logic = false;
-            User CurrentUser = new User("", ""); // вся информация о текущем пользователе
-            string CurrentPassword = CurrentPasswordTextBox.Text;
+            User CurrentUser = new User("", "", ""); // вся информация о текущем пользователе
 
             foreach (User user in listUsers)
             {
@@ -84,16 +84,25 @@ namespace Practice
                 }
             }
 
-            logic = true; // !!! ЗАГЛУШКА, ЧТОБЫ МОЖНО БЫЛО ПЕРЕХОДИТЬ НА ДРУГИЕ ОКНА !!!
+
 
             if (logic)
             {
-                new Work(CurrentUser).Show();
-                this.Hide();
+                CurrentUser.Password = new CollegeEntities().Users.First(l => l.Login == CurrentUser.Login).Password;
+                
+                if (CurrentUser.Password == CurrentPasswordTextBox.Text)
+                {
+                    new Work(CurrentUser).Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("У такого пользователя не тот пароль, что вы указали :(", "ОШИБКА");
+                }
             }
             else
             {
-                MessageBox.Show("ОШИБКА", "Указанный пользователь не найден :(");
+                MessageBox.Show("Указанный пользователь не найден :(", "ОШИБКА");
             }
         }
     }
