@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Practice"
         mc:Ignorable="d"
-        Title="Work" Height="500" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Work" Height="500" Width="1000" WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -18,6 +18,7 @@
         <Grid Grid.Row="0" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -28,7 +29,7 @@
                 Тип аккаунта
             </TextBlock>
             <!-- здесь отображаются только те таблицы, к которым есть доступ у пользователя () -->
-            <WrapPanel Grid.Column="1" HorizontalAlignment="Center">
+            <WrapPanel Margin="0 5 0 0" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Center">
                 <Border Visibility="Collapsed" Margin="0 0 10 0" Background="White" CornerRadius="5">
                     <Button x:Name="StudentsTableButton" FontWeight="DemiBold" FontSize="14" Padding="10 8" BorderThickness="0" Background="Transparent" Click="StudentsTableButton_Click">
                         Студенты
