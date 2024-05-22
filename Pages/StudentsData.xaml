@@ -9,6 +9,7 @@
       Title="StudentsData">
 
 
+
     <DataGrid x:Name="StudentsDataGrid">
         <DataGrid.Columns>
             <DataGridTextColumn Binding="{Binding id}" Header="ID"></DataGridTextColumn>

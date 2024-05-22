@@ -34,9 +34,21 @@ namespace Practice
                 {
                     (GradesTableButton.Parent as Border).Visibility = Visibility.Visible;
                 }
+
                 if(CurrentRules.StudentsTableSee) {
                     (StudentsTableButton.Parent as Border).Visibility = Visibility.Visible;
                 }
+
+                if (CurrentRules.TeachersTableSee)
+                {
+                    (TeachersTableButton.Parent as Border).Visibility = Visibility.Visible;
+                }
+
+                if (CurrentRules.GroupsTableSee)
+                {
+                    (GroupsTableButton.Parent as Border).Visibility = Visibility.Visible;
+                }
+
             }
         }
 
@@ -53,6 +65,41 @@ namespace Practice
         private void GradesTableButton_Click(object sender, RoutedEventArgs e)
         {
             ShowTable(new GradesData(), "Оценки");
+        }
+
+        private void TeachersTableButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowTable(new TeachersData(), "Преподы");
+        }
+
+        private void AVGStudentsScoreTableButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DisciplinesTableButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void GroupsTableButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowTable(new GroupData(), "Группы");
+        }
+
+        private void LeaveStudentsTableButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RUPTableButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SpecialitiesTableButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
