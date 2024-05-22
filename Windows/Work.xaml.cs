@@ -54,6 +54,10 @@ namespace Practice
                     (StudentsTableButton.Parent as Border).Visibility = Visibility.Visible;
                 }
 
+                if (CurrentRules.RUPTableSee)
+                {
+                    (RUPTableButton.Parent as Border).Visibility = Visibility.Visible;
+                }
             }
         }
 
@@ -99,7 +103,7 @@ namespace Practice
 
         private void RUPTableButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ShowTable(new RUPData(), "РУПЫ");
         }
 
         private void SpecialitiesTableButton_Click(object sender, RoutedEventArgs e)
