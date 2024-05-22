@@ -58,6 +58,11 @@ namespace Practice
                 {
                     (RUPTableButton.Parent as Border).Visibility = Visibility.Visible;
                 }
+
+                if (CurrentRules.DisciplinesTableSee)
+                {
+                    (DisciplinesTableButton.Parent as Border).Visibility = Visibility.Visible;
+                }
             }
         }
 
@@ -88,7 +93,7 @@ namespace Practice
 
         private void DisciplinesTableButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ShowTable(new DisciplinesData(), "Дисциплины");
         }
 
         private void GroupsTableButton_Click(object sender, RoutedEventArgs e)

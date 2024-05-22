@@ -129,6 +129,9 @@
     <Compile Include="Pages\GroupData.xaml.cs">
       <DependentUpon>GroupData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\DisciplinesData.xaml.cs">
+      <DependentUpon>DisciplinesData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RUPData.xaml.cs">
       <DependentUpon>RUPData.xaml</DependentUpon>
     </Compile>
@@ -143,6 +146,10 @@
       <DependentUpon>Work.xaml</DependentUpon>
     </Compile>
     <Page Include="Pages\GroupData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\DisciplinesData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
