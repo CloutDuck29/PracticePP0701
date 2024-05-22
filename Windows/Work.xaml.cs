@@ -63,7 +63,13 @@ namespace Practice
                 {
                     (DisciplinesTableButton.Parent as Border).Visibility = Visibility.Visible;
                 }
+
+                if (CurrentRules.SpecialitiesTableSee)
+                {
+                    (SpecialitiesTableButton.Parent as Border).Visibility = Visibility.Visible;
+                }
             }
+
         }
 
         // отображение выбранной таблицы и замена названия текущей таблицы в метке
@@ -113,7 +119,7 @@ namespace Practice
 
         private void SpecialitiesTableButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ShowTable(new SpecialitiesData(), "Специальности");
         }
     }
 }
