@@ -21,10 +21,37 @@ namespace Practice.Pages
     /// </summary>
     public partial class StudentsData : Page
     {
+        CollegeEntities db = new CollegeEntities();
+
         public StudentsData()
         {
             InitializeComponent();
-            StudentsDataGrid.ItemsSource = new CollegeEntities().Students.ToList();
+            StudentsDataGrid.ItemsSource = db.Students.ToList();
+            GroupComboBox.ItemsSource = db.Students.ToList().Select(x => x.Groups.Name).Distinct();
+        }
+
+
+        private void filterButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (GroupComboBox.SelectedItem == null && FIOTextBox.Text == "")
+            {
+                MessageBox.Show("Вы не выбрали ничего для фильтрации", "Ошибка");
+            }
+            else if (FIOTextBox.Text == "")
+            {
+                StudentsDataGrid.ItemsSource = db.Students.ToList().Where(x => x.Groups.Name == Convert.ToString(GroupComboBox.SelectedItem));
+                MessageBox.Show("Поиск проводится только по группе", "Оповещение");
+            }
+            else if (GroupComboBox.SelectedItem == null)
+            {
+                StudentsDataGrid.ItemsSource = db.Students.ToList().Where(x => x.FIO == FIOTextBox.Text);
+                MessageBox.Show("Поиск проводится только по группам", "Оповещение");
+            }
+            else
+            {
+                StudentsDataGrid.ItemsSource = db.Students.ToList().Where(x => x.FIO == FIOTextBox.Text && x.Groups.Name == Convert.ToString(GroupComboBox.SelectedItem));
+                MessageBox.Show("Поиск проводится по специальности и группам", "Оповещение");
+            }
         }
     }
 }

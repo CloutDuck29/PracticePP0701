@@ -49,6 +49,11 @@ namespace Practice
                     (GroupsTableButton.Parent as Border).Visibility = Visibility.Visible;
                 }
 
+                if (CurrentRules.StudentsTableSee)
+                {
+                    (StudentsTableButton.Parent as Border).Visibility = Visibility.Visible;
+                }
+
             }
         }
 

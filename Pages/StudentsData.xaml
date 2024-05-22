@@ -8,13 +8,45 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="StudentsData">
 
-
-
-    <DataGrid x:Name="StudentsDataGrid">
-        <DataGrid.Columns>
-            <DataGridTextColumn Binding="{Binding id}" Header="ID"></DataGridTextColumn>
-            <DataGridTextColumn Width="4*" Binding="{Binding FIO}" Header="ФИО"></DataGridTextColumn>
-            <DataGridTextColumn Width="4*" Binding="{Binding Groups.Name}" Header="Группа"></DataGridTextColumn>
-        </DataGrid.Columns>
-    </DataGrid>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Margin="0 5 0 10" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Height="25" Grid.Row="0" Grid.Column="0">Группа</Label>
+            <ComboBox Height="25" Grid.Row="0" Grid.Column="1" x:Name="GroupComboBox" Width="150"/>
+            <Label Height="25" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">ФИО</Label>
+            <TextBox Height="25" Grid.Row="2" Grid.Column="1" x:Name="FIOTextBox" Width="150" >
+            </TextBox>
+            <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+                <Border Background="White" CornerRadius="5">
+                    <Button x:Name="filterButton" Padding="10 5" FontWeight="Bold"  Foreground="#212121" BorderThickness="0" Background="Transparent" Click="filterButton_Click">
+                        ОТФИЛЬТРОВАТЬ
+                    </Button>
+                </Border>
+            </StackPanel>
+        </Grid>
+        <DataGrid Grid.Row="1" x:Name="StudentsDataGrid">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding id}" Header="ID"></DataGridTextColumn>
+                <DataGridTextColumn Width="2*" Binding="{Binding FIO}" Header="ФИО"></DataGridTextColumn>
+                <DataGridTextColumn Width="2*" Binding="{Binding Groups.Name}" Header="Группа"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
 </Page>
