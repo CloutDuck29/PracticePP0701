@@ -122,6 +122,12 @@
     <Compile Include="Database\VedomostOcenokStudentovVRazrezeGrupIDisciplin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\LeaveStudentsData.xaml.cs">
+      <DependentUpon>LeaveStudentsData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AVGStudentScoreData.xaml.cs">
+      <DependentUpon>AVGStudentScoreData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SpecialitiesData.xaml.cs">
       <DependentUpon>SpecialitiesData.xaml</DependentUpon>
     </Compile>
@@ -148,6 +154,14 @@
     <Compile Include="Windows\Work.xaml.cs">
       <DependentUpon>Work.xaml</DependentUpon>
     </Compile>
+    <Page Include="Pages\LeaveStudentsData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AVGStudentScoreData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\SpecialitiesData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

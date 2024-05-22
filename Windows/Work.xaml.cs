@@ -68,8 +68,17 @@ namespace Practice
                 {
                     (SpecialitiesTableButton.Parent as Border).Visibility = Visibility.Visible;
                 }
-            }
 
+                if (CurrentRules.AVGStudentScoresTableSee)
+                {
+                    (AVGStudentsScoreTableButton.Parent as Border).Visibility = Visibility.Visible;
+                }
+
+                if (CurrentRules.LeaveStudentsTableSee)
+                {
+                    (LeaveStudentsTableButton.Parent as Border).Visibility = Visibility.Visible;
+                }
+            }
         }
 
         // отображение выбранной таблицы и замена названия текущей таблицы в метке
@@ -94,7 +103,7 @@ namespace Practice
 
         private void AVGStudentsScoreTableButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ShowTable(new AVGStudentScoreData(), "Cредний балл");
         }
 
         private void DisciplinesTableButton_Click(object sender, RoutedEventArgs e)
@@ -109,7 +118,7 @@ namespace Practice
 
         private void LeaveStudentsTableButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ShowTable(new LeaveStudentsData(), "Отчисленные");
         }
 
         private void RUPTableButton_Click(object sender, RoutedEventArgs e)
