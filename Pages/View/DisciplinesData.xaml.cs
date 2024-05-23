@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Practice.Pages
+namespace Practice.Pages.View
 {
     public partial class DisciplinesData : Page
     {

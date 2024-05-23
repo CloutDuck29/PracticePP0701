@@ -1,13 +1,13 @@
-﻿<Page x:Class="Practice.Pages.TeachersData"
+﻿<Page x:Class="Practice.Pages.View.GradesData"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Practice.Pages"
+      xmlns:local="clr-namespace:Practice.Pages.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TeachersData">
-    
+      Title="GradesData">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -28,8 +28,8 @@
                 <RowDefinition Height="10"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <Label Height="25" Grid.Row="0" Grid.Column="0">Категория</Label>
-            <ComboBox Height="25" Grid.Row="0" Grid.Column="1" x:Name="CategoryComboBox" Width="150"/>
+            <Label Height="25" Grid.Row="0" Grid.Column="0">Значение оценки</Label>
+            <ComboBox Height="25" Grid.Row="0" Grid.Column="1" x:Name="ValueGradeComboBox" Width="150"/>
             <Label Height="25" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">ФИО</Label>
             <TextBox Height="25" Grid.Row="2" Grid.Column="1" x:Name="FIOTextBox" Width="150" >
             </TextBox>
@@ -41,12 +41,13 @@
                 </Border>
             </StackPanel>
         </Grid>
-        <DataGrid Grid.Row="1" x:Name="TeachersDataGrid">
+        <DataGrid Grid.Row="1" x:Name="GradesDataGrid">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID"></DataGridTextColumn>
-                <DataGridTextColumn Width="2*" Binding="{Binding FIO}" Header="ФИО"></DataGridTextColumn>
-                <DataGridTextColumn Width="2*" Binding="{Binding Category}" Header="Категория"></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Experience}" Header="Опыт"></DataGridTextColumn>
+                <DataGridTextColumn Width="2*" Binding="{Binding RupID}" Header="РУП"></DataGridTextColumn>
+                <DataGridTextColumn Width="2*" Binding="{Binding Students.FIO}" Header="Студент"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding ValueGrade}" Header="Значение"></DataGridTextColumn>
+                <DataGridTextColumn Width="2*" Binding="{Binding Date}" Header="Дата"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

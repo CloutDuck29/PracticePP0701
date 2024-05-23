@@ -124,70 +124,77 @@
     <Compile Include="Database\VedomostOcenokStudentovVRazrezeGrupIDisciplin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\LeaveStudentsData.xaml.cs">
+    <Compile Include="Pages\View\LeaveStudentsData.xaml.cs">
       <DependentUpon>LeaveStudentsData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AVGStudentScoreData.xaml.cs">
+    <Compile Include="Pages\View\AVGStudentScoreData.xaml.cs">
       <DependentUpon>AVGStudentScoreData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SpecialitiesEdit.xaml.cs">
+    <Compile Include="Pages\Edit\GroupsEdit.xaml.cs">
+      <DependentUpon>GroupsEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Edit\SpecialitiesEdit.xaml.cs">
       <DependentUpon>SpecialitiesEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SpecialitiesData.xaml.cs">
+    <Compile Include="Pages\View\SpecialitiesData.xaml.cs">
       <DependentUpon>SpecialitiesData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\GradesData.xaml.cs">
+    <Compile Include="Pages\View\GradesData.xaml.cs">
       <DependentUpon>GradesData.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Rules.cs" />
-    <Compile Include="Pages\GroupData.xaml.cs">
+    <Compile Include="Pages\View\GroupData.xaml.cs">
       <DependentUpon>GroupData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\DisciplinesData.xaml.cs">
+    <Compile Include="Pages\View\DisciplinesData.xaml.cs">
       <DependentUpon>DisciplinesData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RUPData.xaml.cs">
+    <Compile Include="Pages\View\RUPData.xaml.cs">
       <DependentUpon>RUPData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\TeachersData.xaml.cs">
+    <Compile Include="Pages\View\TeachersData.xaml.cs">
       <DependentUpon>TeachersData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\StudentsData.xaml.cs">
+    <Compile Include="Pages\View\StudentsData.xaml.cs">
       <DependentUpon>StudentsData.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\User.cs" />
     <Compile Include="Windows\Work.xaml.cs">
       <DependentUpon>Work.xaml</DependentUpon>
     </Compile>
-    <Page Include="Pages\LeaveStudentsData.xaml">
+    <Page Include="Pages\View\LeaveStudentsData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\AVGStudentScoreData.xaml">
+    <Page Include="Pages\View\AVGStudentScoreData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\SpecialitiesEdit.xaml">
+    <Page Include="Pages\Edit\GroupsEdit.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\SpecialitiesData.xaml">
+    <Page Include="Pages\Edit\SpecialitiesEdit.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\GroupData.xaml">
+    <Page Include="Pages\View\SpecialitiesData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\DisciplinesData.xaml">
+    <Page Include="Pages\View\GroupData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\RUPData.xaml">
+    <Page Include="Pages\View\DisciplinesData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\TeachersData.xaml">
+    <Page Include="Pages\View\RUPData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\View\TeachersData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -203,11 +210,11 @@
       <DependentUpon>Authorization.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\GradesData.xaml">
+    <Page Include="Pages\View\GradesData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\StudentsData.xaml">
+    <Page Include="Pages\View\StudentsData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

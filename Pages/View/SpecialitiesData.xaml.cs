@@ -1,4 +1,5 @@
-﻿using Practice.Database;
+﻿using Practice.Classes;
+using Practice.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +15,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Practice.Pages
+namespace Practice.Pages.View
 {
-    public partial class LeaveStudentsData : Page
+    public partial class SpecialitiesData : Page
     {
         CollegeEntities db = new CollegeEntities();
-        public LeaveStudentsData()
+        public SpecialitiesData()
         {
             InitializeComponent();
-            LeaveStudentsDataGrid.ItemsSource = db.LeaveStudents.ToList();
+            SpecialitiesDataGrid.ItemsSource = db.Specialities.ToList();
+            Elements.SpecialitiesDataGrid = SpecialitiesDataGrid;
         }
     }
 }

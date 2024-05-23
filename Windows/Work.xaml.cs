@@ -1,6 +1,7 @@
 ﻿using Practice.Classes;
 using Practice.Database;
 using Practice.Pages;
+using Practice.Pages.View;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;

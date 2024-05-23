@@ -14,15 +14,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Practice.Pages
+namespace Practice.Pages.View
 {
-    public partial class AVGStudentScoreData : Page
+    public partial class LeaveStudentsData : Page
     {
         CollegeEntities db = new CollegeEntities();
-        public AVGStudentScoreData()
+        public LeaveStudentsData()
         {
             InitializeComponent();
-            AVGStudentScoreDataGrid.ItemsSource = db.AVGStudentScores.ToList();
+            LeaveStudentsDataGrid.ItemsSource = db.LeaveStudents.ToList();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Practice.Classes;
-using Practice.Database;
+﻿using Practice.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +14,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Practice.Pages
+namespace Practice.Pages.View
 {
-    public partial class SpecialitiesData : Page
+    public partial class AVGStudentScoreData : Page
     {
         CollegeEntities db = new CollegeEntities();
-        public SpecialitiesData()
+        public AVGStudentScoreData()
         {
             InitializeComponent();
-            SpecialitiesDataGrid.ItemsSource = db.Specialities.ToList();
-            Elements.SpecialitiesDataGrid = SpecialitiesDataGrid;
+            AVGStudentScoreDataGrid.ItemsSource = db.AVGStudentScores.ToList();
         }
     }
 }
