@@ -41,13 +41,13 @@ namespace Practice
             StudentsTableSee = true;
             TeachersTableSee = true;
             DisciplinesTableSee = true;
-            GradesTableSee = true;
+            GradesTableSee = true; 
             GroupsTableSee = true;
             RUPTableSee = true;
             SpecialitiesTableSee = true;
         }
 
-        // Определение прав пользователей, в зависимости от роли
+        // определение прав пользователей, в зависимости от роли
         public Rules(string role) {
             if(role == "Teacher")
             {

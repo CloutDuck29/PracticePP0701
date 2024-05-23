@@ -65,6 +65,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Elements.cs" />
+    <Compile Include="Classes\Errors.cs" />
     <Compile Include="Database\AVGStudentScores.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -128,6 +130,9 @@
     <Compile Include="Pages\AVGStudentScoreData.xaml.cs">
       <DependentUpon>AVGStudentScoreData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SpecialitiesEdit.xaml.cs">
+      <DependentUpon>SpecialitiesEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SpecialitiesData.xaml.cs">
       <DependentUpon>SpecialitiesData.xaml</DependentUpon>
     </Compile>
@@ -159,6 +164,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\AVGStudentScoreData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SpecialitiesEdit.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

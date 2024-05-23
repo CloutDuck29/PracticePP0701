@@ -1,6 +1,9 @@
-﻿using Practice.Pages;
+﻿using Practice.Classes;
+using Practice.Database;
+using Practice.Pages;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +30,7 @@ namespace Practice
             CurrentRules = new Rules(CurrentUser.Role);
             InitializeComponent();
             TypeOfAccount.Text = currentUser.Role;
+            Elements.NameOfCurrentPage = NameOfCurrentPage;
             // связь между правами пользователя и отображаемыми элементами интерфейса при инициализации приложения
             if (CurrentRules != null) 
             {
@@ -82,53 +86,81 @@ namespace Practice
         }
 
         // отображение выбранной таблицы и замена названия текущей таблицы в метке
-        private void ShowTable(object page, string nameOfPage)
+        private void ShowPage(object page, string nameOfPage)
         {
             CurrentData.Navigate(page);
-            NameOfCurrentTable.Text = nameOfPage;
+            NameOfCurrentPage.Text = nameOfPage;
         }
+
         private void StudentsTableButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowTable(new StudentsData(), "Студенты");
+            ShowPage(new StudentsData(), "Таблица студенты");
         }
         private void GradesTableButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowTable(new GradesData(), "Оценки");
+            ShowPage(new GradesData(), "Таблица оценки");
         }
 
         private void TeachersTableButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowTable(new TeachersData(), "Преподы");
+            ShowPage(new TeachersData(), "Таблица преподы");
         }
 
         private void AVGStudentsScoreTableButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowTable(new AVGStudentScoreData(), "Cредний балл");
+            ShowPage(new AVGStudentScoreData(), "Таблица средний балл");
         }
 
         private void DisciplinesTableButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowTable(new DisciplinesData(), "Дисциплины");
+            ShowPage(new DisciplinesData(), "Таблица дисциплины");
         }
 
         private void GroupsTableButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowTable(new GroupData(), "Группы");
+            ShowPage(new GroupData(), "Таблица группы");
         }
 
         private void LeaveStudentsTableButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowTable(new LeaveStudentsData(), "Отчисленные");
+            ShowPage(new LeaveStudentsData(), "Таблица отчисленные");
         }
 
         private void RUPTableButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowTable(new RUPData(), "РУПЫ");
+            ShowPage(new RUPData(), "Таблица РУПЫ");
         }
 
         private void SpecialitiesTableButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowTable(new SpecialitiesData(), "Специальности");
+            ShowPage(new SpecialitiesData(), "Таблица специальности");
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(NameOfCurrentPage.Text == "Таблица специальности" && Elements.SpecialitiesDataGrid.SelectedItem != null)
+            {
+                ShowPage(new SpecialitiesEdit(Elements.SpecialitiesDataGrid.SelectedItem), "Редактирование специальности");
+            }
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowPage(new SpecialitiesEdit(), "Добавление специальности");
+        }
+
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (NameOfCurrentPage.Text == "Таблица специальности" && Elements.SpecialitiesDataGrid.SelectedItem != null && (MessageBoxResult)MessageBox.Show("Вы уверены что хотите удалить запись?", "ПРЕДУПРЕЖДЕНИЕ", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                using (var context = CollegeEntities.GetContext())
+                {
+                    context.Specialities.Remove(context.Specialities.First(x => x.id == ((Specialities)Elements.SpecialitiesDataGrid.SelectedItem).id));
+                    context.SaveChanges();
+                }
+                Elements.SpecialitiesDataGrid.ItemsSource = new CollegeEntities().Specialities.ToList();
+            }
         }
     }
 }
