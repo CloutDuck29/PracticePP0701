@@ -15,5 +15,7 @@ namespace Practice.Classes
         public static DataGrid SpecialitiesDataGrid;
         public static DataGrid GroupsDataGrid;
         public static DataGrid GradesDataGrid;
+        public static DataGrid RUPDataGrid;
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using Practice.Database;
+﻿using Practice.Classes;
+using Practice.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace Practice.Pages.View
         {
             InitializeComponent();
             RUPDataGrid.ItemsSource = db.RUP.ToList();
+            Elements.RUPDataGrid = RUPDataGrid;
         }
     }
 }

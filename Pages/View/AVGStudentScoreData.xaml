@@ -9,7 +9,6 @@
       Title="AVGStudentScoreData">
     <DataGrid Grid.Row="1" x:Name="AVGStudentScoreDataGrid">
         <DataGrid.Columns>
-            <DataGridTextColumn Binding="{Binding ID}" Header="ID"></DataGridTextColumn>
             <DataGridTextColumn Width="2*" Binding="{Binding Students.FIO}" Header="Студент"></DataGridTextColumn>
             <DataGridTextColumn Width="2*" Binding="{Binding AVGScore}" Header="Cредний бал"></DataGridTextColumn>
         </DataGrid.Columns>

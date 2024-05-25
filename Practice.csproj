@@ -127,6 +127,9 @@
     <Compile Include="Pages\Edit\GradesEdit.xaml.cs">
       <DependentUpon>GradesEdit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Edit\RUPEdit.xaml.cs">
+      <DependentUpon>RUPEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\View\LeaveStudentsData.xaml.cs">
       <DependentUpon>LeaveStudentsData.xaml</DependentUpon>
     </Compile>
@@ -166,6 +169,10 @@
       <DependentUpon>Work.xaml</DependentUpon>
     </Compile>
     <Page Include="Pages\Edit\GradesEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Edit\RUPEdit.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

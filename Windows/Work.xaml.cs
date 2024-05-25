@@ -189,6 +189,10 @@ namespace Practice
             {
                 ShowPage(new GradesEdit(Elements.GradesDataGrid.SelectedItem), "Редактирование оценки");
             }
+            else if (NameOfCurrentPage.Text == "Таблица РУПЫ" && Elements.RUPDataGrid.SelectedItem != null)
+            {
+                ShowPage(new RUPEdit(Elements.RUPDataGrid.SelectedItem), "Редактирование РУПА");
+            }
         }
         // добавление
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -204,6 +208,10 @@ namespace Practice
             else if (NameOfCurrentPage.Text == "Таблица оценки")
             {
                 ShowPage(new GradesEdit(), "Добавление оценки");
+            }
+            else if (NameOfCurrentPage.Text == "Таблица РУПЫ")
+            {
+                ShowPage(new RUPEdit(), "Добавление РУПА");
             }
         }
         // удаление
@@ -237,6 +245,16 @@ namespace Practice
                     context.SaveChanges();
                 }
                 Elements.GradesDataGrid.ItemsSource = new CollegeEntities().Grades.ToList();
+            }
+
+            else if (NameOfCurrentPage.Text == "Таблица РУПЫ" && Elements.RUPDataGrid.SelectedItem != null && (MessageBoxResult)MessageBox.Show("Вы уверены что хотите удалить запись?", "ПРЕДУПРЕЖДЕНИЕ", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                using (var context = CollegeEntities.GetContext())
+                {
+                    context.RUP.Remove(context.RUP.First(x => x.id == ((RUP)Elements.RUPDataGrid.SelectedItem).id));
+                    context.SaveChanges();
+                }
+                Elements.RUPDataGrid.ItemsSource = new CollegeEntities().RUP.ToList();
             }
 
         }
