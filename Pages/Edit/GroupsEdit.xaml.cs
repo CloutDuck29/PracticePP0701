@@ -46,7 +46,6 @@ namespace Practice.Pages.Edit
                 // проверка на текущее окно/режим редактирования или добавления
                 if (Elements.NameOfCurrentPage.Text == "Добавление группы")
                 {
-                    MessageBox.Show(((Specialities)SpecialityComboBox.SelectedItem).id.ToString());
                     var group = new Groups()
                     {
                         Name = NameTextBox.Text,

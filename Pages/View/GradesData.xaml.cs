@@ -1,4 +1,5 @@
-﻿using Practice.Database;
+﻿using Practice.Classes;
+using Practice.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,8 @@ namespace Practice.Pages.View
         {
             InitializeComponent();
             GradesDataGrid.ItemsSource = db.Grades.ToList();
-
             ValueGradeComboBox.ItemsSource = db.Grades.ToList().Select(x => x.ValueGrade).Distinct();
+            Elements.GradesDataGrid = GradesDataGrid;
         }
 
 

@@ -124,6 +124,9 @@
     <Compile Include="Database\VedomostOcenokStudentovVRazrezeGrupIDisciplin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Edit\GradesEdit.xaml.cs">
+      <DependentUpon>GradesEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\View\LeaveStudentsData.xaml.cs">
       <DependentUpon>LeaveStudentsData.xaml</DependentUpon>
     </Compile>
@@ -162,6 +165,10 @@
     <Compile Include="Windows\Work.xaml.cs">
       <DependentUpon>Work.xaml</DependentUpon>
     </Compile>
+    <Page Include="Pages\Edit\GradesEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\View\LeaveStudentsData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

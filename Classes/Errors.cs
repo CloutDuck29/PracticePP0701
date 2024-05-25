@@ -33,6 +33,14 @@ namespace Practice.Classes
                         throw new Exception();
                     }
                 }
+                if (controls[i] is DatePicker)
+                {
+                    if (((DatePicker)controls[i]).SelectedDate == null)
+                    {
+                        MessageBox.Show($"{controls[i].Name} не заполнен", "ОШИБКА");
+                        throw new Exception();
+                    }
+                }
             }
         }
 

@@ -185,6 +185,10 @@ namespace Practice
             {
                 ShowPage(new GroupsEdit(Elements.GroupsDataGrid.SelectedItem), "Редактирование группы");
             }
+            else if (NameOfCurrentPage.Text == "Таблица оценки" && Elements.GradesDataGrid.SelectedItem != null)
+            {
+                ShowPage(new GradesEdit(Elements.GradesDataGrid.SelectedItem), "Редактирование оценки");
+            }
         }
         // добавление
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -196,6 +200,10 @@ namespace Practice
             else if (NameOfCurrentPage.Text == "Таблица группы")
             {
                 ShowPage(new GroupsEdit(), "Добавление группы");
+            }
+            else if (NameOfCurrentPage.Text == "Таблица оценки")
+            {
+                ShowPage(new GradesEdit(), "Добавление оценки");
             }
         }
         // удаление
@@ -219,6 +227,16 @@ namespace Practice
                     context.SaveChanges();
                 }
                 Elements.GroupsDataGrid.ItemsSource = new CollegeEntities().Groups.ToList();
+            }
+
+            else if (NameOfCurrentPage.Text == "Таблица оценки" && Elements.GradesDataGrid.SelectedItem != null && (MessageBoxResult)MessageBox.Show("Вы уверены что хотите удалить запись?", "ПРЕДУПРЕЖДЕНИЕ", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                using (var context = CollegeEntities.GetContext())
+                {
+                    context.Grades.Remove(context.Grades.First(x => x.id == ((Grades)Elements.GradesDataGrid.SelectedItem).id));
+                    context.SaveChanges();
+                }
+                Elements.GradesDataGrid.ItemsSource = new CollegeEntities().Grades.ToList();
             }
 
         }
