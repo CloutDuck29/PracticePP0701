@@ -14,6 +14,9 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -274,6 +277,37 @@ namespace Practice
                 }
                 Elements.DisciplinesDataGrid.ItemsSource = new CollegeEntities().Disciplines.ToList();
             }
+
+        }
+        // отчёт
+        private void CreateOtchetButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Предполагается, что у вас есть контекст DbContext для Entity Framework
+            using (var context = CollegeEntities.GetContext())
+            {
+                var data1 = context.DvoechinikiVRazrezeGrupIDisciplin.ToList();
+                using (var stream = new FileStream("Двоечники.pdf", FileMode.Create))
+                {
+                    using (var document = new Document())
+                    {
+                        using (var writer = PdfWriter.GetInstance(document, stream))
+                        {
+                            document.Open();
+                            BaseFont bf = BaseFont.CreateFont(@"C:\Users\Alex\Desktop\ArialUni.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+                            document.Add(new iTextSharp.text.Paragraph("Двоечники в разрезе групп и дисциплин", new Font(bf, 20)));
+
+                            foreach (var item in data1)
+                            {
+                                document.Add(new iTextSharp.text.Paragraph($"GroupName: {item.GroupName}, Name: {item.Name}, FIO: {item.FIO}, Date: {item.Date}, ValueGrade: {item.ValueGrade}", new Font(bf, 12))); // Измените свойства на те, которые у вас есть
+                            }
+                            document.Close();
+                        }
+                    }
+                }
+                MessageBox.Show("ОТЧЕТ СОЗДАН!");
+            }
+
+
 
         }
     }

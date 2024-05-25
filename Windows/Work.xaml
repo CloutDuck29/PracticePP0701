@@ -28,6 +28,12 @@
             <TextBlock Grid.Column="0" x:Name="TypeOfAccount" FontWeight="DemiBold" Opacity="0.8" VerticalAlignment="Center">
                 Тип аккаунта
             </TextBlock>
+            <Button x:Name="CreateOtchetButton" Click="CreateOtchetButton_Click" BorderBrush="Transparent" Background="Transparent" Grid.Column="1" FontWeight="DemiBold" HorizontalAlignment="Right" Opacity="0.8" VerticalAlignment="Center">
+                создать отчёт
+            </Button>
+            <TextBlock Grid.Column="2" x:Name="NameOfCurrentPage" FontWeight="DemiBold" HorizontalAlignment="Right" Opacity="0.8" VerticalAlignment="Center">
+                текущая страница
+            </TextBlock>
             <!-- здесь отображаются только те таблицы, к которым есть доступ у пользователя () -->
             <WrapPanel Margin="0 5 0 0" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Center">
                 <Border Visibility="Collapsed" Margin="0 0 10 0" Background="White" CornerRadius="5">
@@ -52,7 +58,7 @@
                 </Border>
                 <Border Visibility="Collapsed" Margin="0 0 10 0" Background="White" CornerRadius="5">
                     <Button x:Name="DisciplinesTableButton" FontWeight="DemiBold" FontSize="14" Padding="10 8" BorderThickness="0" Background="Transparent" Click="DisciplinesTableButton_Click">
-                         Дисциплины
+                        Дисциплины
                     </Button>
                 </Border>
                 <Border Visibility="Collapsed" Margin="0 0 10 0" Background="White" CornerRadius="5">
@@ -76,9 +82,6 @@
                     </Button>
                 </Border>
             </WrapPanel>
-            <TextBlock Grid.Column="2" x:Name="NameOfCurrentPage" FontWeight="DemiBold" HorizontalAlignment="Right" Opacity="0.8" VerticalAlignment="Center">
-                текущая страница
-            </TextBlock>
         </Grid>
         <Border Grid.Row="1" Panel.ZIndex="1" Margin="0 10 0 0" CornerRadius="6" BorderBrush="Gray" BorderThickness="2">
             <Frame Panel.ZIndex="-1" NavigationUIVisibility="Hidden" x:Name="CurrentData">
