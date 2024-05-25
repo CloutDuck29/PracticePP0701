@@ -17,21 +17,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Practice.Pages
+namespace Practice.Pages.Edit
 {
-    public partial class SpecialitiesEdit : Page
+    public partial class GroupsEdit : Page
     {
-        Specialities Row; // выбранная строка
+        Groups Row; // выбранная строка
 
-        public SpecialitiesEdit(object row) // конструктор, если мы РЕДАКТИРУЕМ строку
+        public GroupsEdit(object row) // конструктор, если мы РЕДАКТИРУЕМ строку
         {
             InitializeComponent();
-            NameTextBox.Text = ((Specialities)row).Name;
-            Row = (Specialities)row;
+            NameTextBox.Text = ((Groups)row).Name;
+            SpecialityComboBox.ItemsSource = new CollegeEntities().Specialities.ToList().Distinct();
+
+            Row = (Groups)row;
         }
-        public SpecialitiesEdit() // конструктор, если мы ДОБАВЛЯЕМ строку
+        public GroupsEdit() // конструктор, если мы ДОБАВЛЯЕМ строку
         {
             InitializeComponent();
+            SpecialityComboBox.ItemsSource = new CollegeEntities().Specialities.ToList().Distinct();
         }
 
         private void ConfirmActionButton_Click(object sender, RoutedEventArgs e)
@@ -39,18 +42,20 @@ namespace Practice.Pages
             try
             {
                 // проверка на вводимые значения
-                Errors.CheckIsEmpty(NameTextBox);
+                Errors.CheckIsEmpty(NameTextBox, SpecialityComboBox);
                 // проверка на текущее окно/режим редактирования или добавления
-                if (Elements.NameOfCurrentPage.Text == "Добавление специальности")
+                if (Elements.NameOfCurrentPage.Text == "Добавление группы")
                 {
-                    var speciality = new Specialities()
+                    MessageBox.Show(((Specialities)SpecialityComboBox.SelectedItem).id.ToString());
+                    var group = new Groups()
                     {
                         Name = NameTextBox.Text,
+                        SpecialityID = ((Specialities)SpecialityComboBox.SelectedItem).id,
                     };
 
                     using (var context = CollegeEntities.GetContext())
                     {
-                        context.Specialities.Add(speciality);
+                        context.Groups.Add(group);
                         context.SaveChanges();
                     }
                     MessageBox.Show("Данные успешно добавлены", "УСПЕХ");
@@ -59,13 +64,16 @@ namespace Practice.Pages
                 {
                     using (var context = CollegeEntities.GetContext())
                     {
-                        context.Specialities.First(x => x.id == Row.id).Name = NameTextBox.Text;
+                        context.Groups.First(x => x.id == Row.id).Name = NameTextBox.Text;
+                        context.Groups.First(x => x.id == Row.id).SpecialityID = ((Specialities)SpecialityComboBox.SelectedItem).id;
                         context.SaveChanges();
                     }
                     MessageBox.Show("Данные успешно отредактированы", "УСПЕХ");
                 }
             }
-            catch { }
+            catch
+            { 
+            }
         }
     }
 }

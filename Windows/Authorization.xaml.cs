@@ -54,14 +54,10 @@ namespace Practice
                         if (myreader["DefSchemaName"].ToString() == nameOfSchema)
                         {
                             listUsers.Add(new User(myreader["LoginName"].ToString(), myreader["RoleName"].ToString()));
-                            //MessageBox.Show(listUsers.Last().Login + " " + listUsers.Last().Role);
                         }
-                        //myreader["UserName"].ToString();
-                        //myreader.GetString(0);
                     }
                     myreader.Close();
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("УСПЕШНО ПОЛУЧЕН СПИСОК ПОЛЬЗОВАТЕЛЕЙ", "УСПЕХ");
                 }
                 catch (Exception ex)
                 {

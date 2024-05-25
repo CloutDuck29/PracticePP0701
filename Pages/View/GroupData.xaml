@@ -29,7 +29,7 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Label Height="25" Grid.Row="0" Grid.Column="0">Cпециальность</Label>
-            <ComboBox Height="25" Grid.Row="0" Grid.Column="1" x:Name="SpecialityComboBox" Width="150"/>
+            <ComboBox Height="25" Grid.Row="0" Grid.Column="1" DisplayMemberPath="Name" x:Name="SpecialityComboBox"  Width="150"/>
             <Label Height="25" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">Группа</Label>
             <TextBox Height="25" Grid.Row="2" Grid.Column="1" x:Name="GroupTextBox" Width="150" >
             </TextBox>

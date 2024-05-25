@@ -13,5 +13,6 @@ namespace Practice.Classes
         public static TextBlock NameOfCurrentPage;
 
         public static DataGrid SpecialitiesDataGrid;
+        public static DataGrid GroupsDataGrid;
     }
 }

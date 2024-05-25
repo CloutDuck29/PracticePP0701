@@ -1,4 +1,5 @@
-﻿using Practice.Database;
+﻿using Practice.Classes;
+using Practice.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,9 @@ namespace Practice.Pages.View
         {
             InitializeComponent();
             GroupsDataGrid.ItemsSource = db.Groups.ToList();
-            SpecialityComboBox.ItemsSource = db.Groups.ToList().Select(x => x.Specialities.Name).Distinct();
+            SpecialityComboBox.ItemsSource = db.Groups.ToList().Select(x => x.Specialities).Distinct();
+            Elements.GroupsDataGrid = GroupsDataGrid;
+            
         }
 
         private void filterButton_Click(object sender, RoutedEventArgs e)
@@ -34,7 +37,7 @@ namespace Practice.Pages.View
             }
             else if (GroupTextBox.Text == "")
             {
-                GroupsDataGrid.ItemsSource = db.Groups.ToList().Where(x => x.Specialities.Name == Convert.ToString(SpecialityComboBox.SelectedItem));
+                GroupsDataGrid.ItemsSource = db.Groups.ToList().Where(x => x.Specialities.Name == ((Specialities)SpecialityComboBox.SelectedItem).Name);
                 MessageBox.Show("Поиск проводится только по cпециальности", "Оповещение");
             }
             else if (SpecialityComboBox.SelectedItem == null)
@@ -44,7 +47,7 @@ namespace Practice.Pages.View
             }
             else
             {
-                GroupsDataGrid.ItemsSource = db.Groups.ToList().Where(x => x.Name == GroupTextBox.Text && x.Specialities.Name == Convert.ToString(SpecialityComboBox.SelectedItem));
+                GroupsDataGrid.ItemsSource = db.Groups.ToList().Where(x => x.Name == GroupTextBox.Text && x.Specialities.Name == ((Specialities)SpecialityComboBox.SelectedItem).Name);
                 MessageBox.Show("Поиск проводится по специальности и группам", "Оповещение");
             }
         }

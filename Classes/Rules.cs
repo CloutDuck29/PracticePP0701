@@ -58,6 +58,7 @@ namespace Practice
             {
                 StudentsTableSee = true;
                 GradesTableSee = true;
+                GradesTableEdit = true;
             }
             else if (role == "Dispetcher")
             {

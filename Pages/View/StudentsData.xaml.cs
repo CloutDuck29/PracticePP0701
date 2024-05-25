@@ -27,7 +27,7 @@ namespace Practice.Pages.View
         {
             InitializeComponent();
             StudentsDataGrid.ItemsSource = db.Students.ToList();
-            GroupComboBox.ItemsSource = db.Students.ToList().Select(x => x.Groups.Name).Distinct();
+            GroupComboBox.ItemsSource = db.Students.ToList().Select(x => x.Groups).Distinct();
         }
 
 
@@ -39,7 +39,7 @@ namespace Practice.Pages.View
             }
             else if (FIOTextBox.Text == "")
             {
-                StudentsDataGrid.ItemsSource = db.Students.ToList().Where(x => x.Groups.Name == Convert.ToString(GroupComboBox.SelectedItem));
+                StudentsDataGrid.ItemsSource = db.Students.ToList().Where(x => x.Groups.Name == ((Groups)GroupComboBox.SelectedItem).Name);
                 MessageBox.Show("Поиск проводится только по группе", "Оповещение");
             }
             else if (GroupComboBox.SelectedItem == null)
@@ -49,7 +49,7 @@ namespace Practice.Pages.View
             }
             else
             {
-                StudentsDataGrid.ItemsSource = db.Students.ToList().Where(x => x.FIO == FIOTextBox.Text && x.Groups.Name == Convert.ToString(GroupComboBox.SelectedItem));
+                StudentsDataGrid.ItemsSource = db.Students.ToList().Where(x => x.FIO == FIOTextBox.Text && x.Groups.Name == ((Groups)GroupComboBox.SelectedItem).Name);
                 MessageBox.Show("Поиск проводится по специальности и группам", "Оповещение");
             }
         }

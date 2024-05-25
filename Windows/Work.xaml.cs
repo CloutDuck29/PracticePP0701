@@ -1,6 +1,7 @@
 ﻿using Practice.Classes;
 using Practice.Database;
 using Practice.Pages;
+using Practice.Pages.Edit;
 using Practice.Pages.View;
 using System;
 using System.Collections.Generic;
@@ -92,65 +93,112 @@ namespace Practice
             CurrentData.Navigate(page);
             NameOfCurrentPage.Text = nameOfPage;
         }
-
+        // просмотр
         private void StudentsTableButton_Click(object sender, RoutedEventArgs e)
         {
             ShowPage(new StudentsData(), "Таблица студенты");
+            ActionsButtons.Visibility = Visibility.Collapsed;
         }
         private void GradesTableButton_Click(object sender, RoutedEventArgs e)
         {
             ShowPage(new GradesData(), "Таблица оценки");
+            if (CurrentRules.GradesTableEdit)
+            {
+                ActionsButtons.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ActionsButtons.Visibility = Visibility.Collapsed;
+            }
         }
-
         private void TeachersTableButton_Click(object sender, RoutedEventArgs e)
         {
             ShowPage(new TeachersData(), "Таблица преподы");
+            ActionsButtons.Visibility = Visibility.Collapsed;
         }
-
         private void AVGStudentsScoreTableButton_Click(object sender, RoutedEventArgs e)
         {
             ShowPage(new AVGStudentScoreData(), "Таблица средний балл");
+            ActionsButtons.Visibility = Visibility.Collapsed;
         }
-
         private void DisciplinesTableButton_Click(object sender, RoutedEventArgs e)
         {
             ShowPage(new DisciplinesData(), "Таблица дисциплины");
+            if (CurrentRules.DisciplinesTableEdit)
+            {
+                ActionsButtons.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ActionsButtons.Visibility = Visibility.Collapsed;
+            }
         }
-
         private void GroupsTableButton_Click(object sender, RoutedEventArgs e)
         {
             ShowPage(new GroupData(), "Таблица группы");
+            if (CurrentRules.GroupsTableEdit)
+            {
+                ActionsButtons.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ActionsButtons.Visibility = Visibility.Collapsed;
+            }
         }
-
         private void LeaveStudentsTableButton_Click(object sender, RoutedEventArgs e)
         {
             ShowPage(new LeaveStudentsData(), "Таблица отчисленные");
+            ActionsButtons.Visibility = Visibility.Collapsed;
         }
-
         private void RUPTableButton_Click(object sender, RoutedEventArgs e)
         {
             ShowPage(new RUPData(), "Таблица РУПЫ");
+            if (CurrentRules.RUPTableEdit)
+            {
+                ActionsButtons.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ActionsButtons.Visibility = Visibility.Collapsed;
+            }
         }
-
         private void SpecialitiesTableButton_Click(object sender, RoutedEventArgs e)
         {
             ShowPage(new SpecialitiesData(), "Таблица специальности");
+            if (CurrentRules.SpecialitiesTableEdit)
+            {
+                ActionsButtons.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ActionsButtons.Visibility = Visibility.Collapsed;
+            }
         }
-
+        // редактирование
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             if(NameOfCurrentPage.Text == "Таблица специальности" && Elements.SpecialitiesDataGrid.SelectedItem != null)
             {
                 ShowPage(new SpecialitiesEdit(Elements.SpecialitiesDataGrid.SelectedItem), "Редактирование специальности");
             }
+            else if (NameOfCurrentPage.Text == "Таблица группы" && Elements.GroupsDataGrid.SelectedItem != null)
+            {
+                ShowPage(new GroupsEdit(Elements.GroupsDataGrid.SelectedItem), "Редактирование группы");
+            }
         }
-
+        // добавление
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            ShowPage(new SpecialitiesEdit(), "Добавление специальности");
+            if (NameOfCurrentPage.Text == "Таблица специальности")
+            {
+                ShowPage(new SpecialitiesEdit(), "Добавление специальности");
+            }
+            else if (NameOfCurrentPage.Text == "Таблица группы")
+            {
+                ShowPage(new GroupsEdit(), "Добавление группы");
+            }
         }
-
-
+        // удаление
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (NameOfCurrentPage.Text == "Таблица специальности" && Elements.SpecialitiesDataGrid.SelectedItem != null && (MessageBoxResult)MessageBox.Show("Вы уверены что хотите удалить запись?", "ПРЕДУПРЕЖДЕНИЕ", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
@@ -162,6 +210,17 @@ namespace Practice
                 }
                 Elements.SpecialitiesDataGrid.ItemsSource = new CollegeEntities().Specialities.ToList();
             }
+
+            else if (NameOfCurrentPage.Text == "Таблица группы" && Elements.GroupsDataGrid.SelectedItem != null && (MessageBoxResult)MessageBox.Show("Вы уверены что хотите удалить запись?", "ПРЕДУПРЕЖДЕНИЕ", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                using (var context = CollegeEntities.GetContext())
+                {
+                    context.Groups.Remove(context.Groups.First(x => x.id == ((Groups)Elements.GroupsDataGrid.SelectedItem).id));
+                    context.SaveChanges();
+                }
+                Elements.GroupsDataGrid.ItemsSource = new CollegeEntities().Groups.ToList();
+            }
+
         }
     }
 }

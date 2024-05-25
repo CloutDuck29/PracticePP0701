@@ -85,7 +85,7 @@
 
             </Frame>
         </Border>
-        <UniformGrid x:Name="ActionsButtons" Margin="0 20 0 0" Rows="1" Columns="3" Grid.Row="2">
+        <UniformGrid Visibility="Collapsed" x:Name="ActionsButtons" Margin="0 20 0 0" Rows="1" Columns="3" Grid.Row="2">
             <Border Margin="0 0 10 0" Background="#9fa15a" CornerRadius="5">
                 <Button x:Name="EditButton" Click="EditButton_Click" FontWeight="DemiBold" FontSize="14" Foreground="#dddddd" Padding="10 8" BorderThickness="0" Background="Transparent">
                     Редактировать
