@@ -21,6 +21,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Reflection;
 
 namespace Practice
 {
@@ -37,14 +38,15 @@ namespace Practice
             TypeOfAccount.Text = currentUser.Role;
             Elements.NameOfCurrentPage = NameOfCurrentPage;
             // связь между правами пользователя и отображаемыми элементами интерфейса при инициализации приложения
-            if (CurrentRules != null) 
+            if (CurrentRules != null)
             {
                 if (CurrentRules.GradesTableSee)
                 {
                     (GradesTableButton.Parent as Border).Visibility = Visibility.Visible;
                 }
 
-                if(CurrentRules.StudentsTableSee) {
+                if (CurrentRules.StudentsTableSee)
+                {
                     (StudentsTableButton.Parent as Border).Visibility = Visibility.Visible;
                 }
 
@@ -180,7 +182,7 @@ namespace Practice
         // редактирование
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            if(NameOfCurrentPage.Text == "Таблица специальности" && Elements.SpecialitiesDataGrid.SelectedItem != null)
+            if (NameOfCurrentPage.Text == "Таблица специальности" && Elements.SpecialitiesDataGrid.SelectedItem != null)
             {
                 ShowPage(new SpecialitiesEdit(Elements.SpecialitiesDataGrid.SelectedItem), "Редактирование специальности");
             }
@@ -282,10 +284,23 @@ namespace Practice
         // отчёт
         private void CreateOtchetButton_Click(object sender, RoutedEventArgs e)
         {
-            // Предполагается, что у вас есть контекст DbContext для Entity Framework
             using (var context = CollegeEntities.GetContext())
             {
+                // ПАРАМЕТРЫ
+                string pathToFont = @"C:\Users\Alex\Desktop\ArialUni.ttf";
+                int titleSize = 24;
+
+                // НАЧАЛО СОЗДАНИЯ ОТЧЁТОВ
                 var data1 = context.DvoechinikiVRazrezeGrupIDisciplin.ToList();
+                var data2 = context.SpisokStudentovVRazrezeGroup.ToList();
+                var data3 = context.UchebnayaNagruzka.ToList();
+                var data4 = context.VedomostOcenokStudentovVRazrezeGrupIDisciplin.ToList();
+
+                // указание шрифта
+                BaseFont bf = BaseFont.CreateFont(pathToFont, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+                Font font = new Font(bf, titleSize - 14);
+
+                // отчёт 1
                 using (var stream = new FileStream("Двоечники.pdf", FileMode.Create))
                 {
                     using (var document = new Document())
@@ -293,22 +308,135 @@ namespace Practice
                         using (var writer = PdfWriter.GetInstance(document, stream))
                         {
                             document.Open();
-                            BaseFont bf = BaseFont.CreateFont(@"C:\Users\Alex\Desktop\ArialUni.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-                            document.Add(new iTextSharp.text.Paragraph("Двоечники в разрезе групп и дисциплин", new Font(bf, 20)));
+                            // добавление заголовка
+                            document.Add(new iTextSharp.text.Paragraph("Двоечники в разрезе групп и дисциплин", new Font(bf, titleSize)));
+                            // добавление таблицы
 
-                            foreach (var item in data1)
+                            PdfPTable table = new PdfPTable(5);
+                            // заголовок таблицы
+                            table.AddCell(new PdfPCell(new Phrase("GroupName", font)));
+                            table.AddCell(new PdfPCell(new Phrase("Name", font)));
+                            table.AddCell(new PdfPCell(new Phrase("FIO", font)));
+                            table.AddCell(new PdfPCell(new Phrase("Date", font)));
+                            table.AddCell(new PdfPCell(new Phrase("ValueGrade", font)));
+
+                            // тело таблицы
+                            foreach (var row in data1)
                             {
-                                document.Add(new iTextSharp.text.Paragraph($"GroupName: {item.GroupName}, Name: {item.Name}, FIO: {item.FIO}, Date: {item.Date}, ValueGrade: {item.ValueGrade}", new Font(bf, 12))); // Измените свойства на те, которые у вас есть
+                                table.AddCell(new PdfPCell(new Phrase(row.GroupName, font)));
+                                table.AddCell(new PdfPCell(new Phrase(row.Name, font)));
+                                table.AddCell(new PdfPCell(new Phrase(row.FIO, font)));
+                                table.AddCell(new PdfPCell(new Phrase(row.Date.ToString(), font)));
+                                table.AddCell(new PdfPCell(new Phrase(row.ValueGrade.ToString(), font)));
                             }
+                            document.Add(table);
                             document.Close();
                         }
                     }
                 }
-                MessageBox.Show("ОТЧЕТ СОЗДАН!");
+
+                // отчёт 2
+                using (var stream = new FileStream("Список студентов в разрезе групп.pdf", FileMode.Create))
+                {
+                    using (var document = new Document())
+                    {
+                        using (var writer = PdfWriter.GetInstance(document, stream))
+                        {
+                            document.Open();
+                            // добавление заголовка
+                            document.Add(new iTextSharp.text.Paragraph("Список студентов в разрезе групп", new Font(bf, titleSize)));
+                            // добавление таблицы
+
+                            PdfPTable table = new PdfPTable(3);
+                            // заголовок таблицы
+                            table.AddCell(new PdfPCell(new Phrase("StudentName", font)));
+                            table.AddCell(new PdfPCell(new Phrase("GroupName", font)));
+                            table.AddCell(new PdfPCell(new Phrase("SpecialityName", font)));
+
+                            // тело таблицы
+                            foreach (var row in data2)
+                            {
+                                table.AddCell(new PdfPCell(new Phrase(row.StudentName, font)));
+                                table.AddCell(new PdfPCell(new Phrase(row.GroupName, font)));
+                                table.AddCell(new PdfPCell(new Phrase(row.SpecialityName, font)));
+                            }
+                            document.Add(table);
+                            document.Close();
+                        }
+                    }
+                }
+
+
+
+                // отчёт 3
+                using (var stream = new FileStream("Учебная нагрузка.pdf", FileMode.Create))
+                {
+                    using (var document = new Document())
+                    {
+                        using (var writer = PdfWriter.GetInstance(document, stream))
+                        {
+                            document.Open();
+                            // добавление заголовка
+                            document.Add(new iTextSharp.text.Paragraph("Учебная нагрузка", new Font(bf, titleSize)));
+                            // добавление таблицы
+
+                            PdfPTable table = new PdfPTable(3);
+                            // заголовок таблицы
+                            table.AddCell(new PdfPCell(new Phrase("ФИО преподавателя", font)));
+                            table.AddCell(new PdfPCell(new Phrase("Имя дисциплины", font)));
+                            table.AddCell(new PdfPCell(new Phrase("Имя специальности", font)));
+
+                            // тело таблицы
+                            foreach (var row in data3)
+                            {
+                                table.AddCell(new PdfPCell(new Phrase(row.ФИО_преподавателя, font)));
+                                table.AddCell(new PdfPCell(new Phrase(row.Имя_дисцплины, font)));
+                                table.AddCell(new PdfPCell(new Phrase(row.Имя_специальности, font)));
+                            }
+                            document.Add(table);
+                            document.Close();
+                        }
+                    }
+                }
+
+
+                // отчёт 4
+                using (var stream = new FileStream("Ведомость оценок студентов в разрезе дисциплин.pdf", FileMode.Create))
+                {
+                    using (var document = new Document())
+                    {
+                        using (var writer = PdfWriter.GetInstance(document, stream))
+                        {
+                            document.Open();
+                            // добавление заголовка
+                            document.Add(new iTextSharp.text.Paragraph("Ведомость оценок студентов в разрезе дисциплин", new Font(bf, titleSize)));
+                            // добавление таблицы
+
+                            PdfPTable table = new PdfPTable(5);
+                            // заголовок таблицы
+                            table.AddCell(new PdfPCell(new Phrase("GroupName", font)));
+                            table.AddCell(new PdfPCell(new Phrase("DisciplineName", font)));
+                            table.AddCell(new PdfPCell(new Phrase("StudentName", font)));
+                            table.AddCell(new PdfPCell(new Phrase("GradeDate", font)));
+                            table.AddCell(new PdfPCell(new Phrase("GradeValue", font)));
+
+                            // тело таблицы
+                            foreach (var row in data4)
+                            {
+                                table.AddCell(new PdfPCell(new Phrase(row.GroupName, font)));
+                                table.AddCell(new PdfPCell(new Phrase(row.DisciplineName, font)));
+                                table.AddCell(new PdfPCell(new Phrase(row.StudentName, font)));
+                                table.AddCell(new PdfPCell(new Phrase(row.GradeDate.ToString(), font)));
+                                table.AddCell(new PdfPCell(new Phrase(row.GradeValue.ToString(), font)));
+                            }
+                            document.Add(table);
+                            document.Close();
+                        }
+                    }
+
+                    MessageBox.Show("ОТЧЕТ СОЗДАН!");
+                }
             }
-
-
-
         }
     }
 }
