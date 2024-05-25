@@ -193,6 +193,10 @@ namespace Practice
             {
                 ShowPage(new RUPEdit(Elements.RUPDataGrid.SelectedItem), "Редактирование РУПА");
             }
+            else if (NameOfCurrentPage.Text == "Таблица дисциплины" && Elements.DisciplinesDataGrid.SelectedItem != null)
+            {
+                ShowPage(new DisciplinesEdit(Elements.DisciplinesDataGrid.SelectedItem), "Редактирование дисциплины");
+            }
         }
         // добавление
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -212,6 +216,10 @@ namespace Practice
             else if (NameOfCurrentPage.Text == "Таблица РУПЫ")
             {
                 ShowPage(new RUPEdit(), "Добавление РУПА");
+            }
+            else if (NameOfCurrentPage.Text == "Таблица дисциплины")
+            {
+                ShowPage(new DisciplinesEdit(), "Добавление дисциплины");
             }
         }
         // удаление
@@ -255,6 +263,16 @@ namespace Practice
                     context.SaveChanges();
                 }
                 Elements.RUPDataGrid.ItemsSource = new CollegeEntities().RUP.ToList();
+            }
+
+            else if (NameOfCurrentPage.Text == "Таблица дисциплины" && Elements.DisciplinesDataGrid.SelectedItem != null && (MessageBoxResult)MessageBox.Show("Вы уверены что хотите удалить запись?", "ПРЕДУПРЕЖДЕНИЕ", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                using (var context = CollegeEntities.GetContext())
+                {
+                    context.Disciplines.Remove(context.Disciplines.First(x => x.id == ((Disciplines)Elements.DisciplinesDataGrid.SelectedItem).id));
+                    context.SaveChanges();
+                }
+                Elements.DisciplinesDataGrid.ItemsSource = new CollegeEntities().Disciplines.ToList();
             }
 
         }
