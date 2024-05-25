@@ -26,10 +26,10 @@ namespace Practice.Pages.Edit
         public GroupsEdit(object row) // конструктор, если мы РЕДАКТИРУЕМ строку
         {
             InitializeComponent();
-            NameTextBox.Text = ((Groups)row).Name;
-            SpecialityComboBox.ItemsSource = new CollegeEntities().Specialities.ToList().Distinct();
-
             Row = (Groups)row;
+            NameTextBox.Text = Row.Name;
+            SpecialityComboBox.ItemsSource = new CollegeEntities().Specialities.ToList().Distinct();
+            SpecialityComboBox.SelectedItem = SpecialityComboBox.Items.Cast<Specialities>().First(item => item.id == Row.SpecialityID);
         }
         public GroupsEdit() // конструктор, если мы ДОБАВЛЯЕМ строку
         {
